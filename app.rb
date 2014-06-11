@@ -29,8 +29,14 @@ def authenticate!
   end
 end
 
+def registered?
+  result = UsersAtMeetup.where("user_id = ? AND meetup_id = ?", session[:user_id], params[:meetup_id])
+  result == [] ? false : true
+end
+
+
 get '/' do
-  erb :index
+  redirect  "/meetups"
 end
 
 get '/auth/github/callback' do
@@ -50,6 +56,55 @@ get '/sign_out' do
   redirect '/'
 end
 
-get '/example_protected_page' do
-  authenticate!
+get '/meetups' do
+
+  @all_meetups = Meetup.all.order("lower(name)")
+  erb :meetups
 end
+
+get '/meetups/:meetup_id' do
+
+  signed_in? ? @registered = registered? : @registered = false
+
+  @meetup = Meetup.find(params[:meetup_id])
+
+  @attending = @meetup.users
+  @comments = @meetup.comments
+
+  erb :meetup
+end
+
+get '/new' do
+  authenticate!
+  erb :create_meetup
+end
+
+post '/new' do
+  Meetup.create(name: params[:name], description: params[:description], location: params[:location])
+  id = Meetup.where(name: params[:name]).first.id
+  flash[:notice] = "Meetup successfully created!"
+  redirect "/meetups/#{id}"
+end
+
+post '/registration' do
+  if signed_in?
+    if registered?
+      UsersAtMeetup.where(meetup_id: params[:meetup_id], user_id: params[:user_id]).destroy_all
+      flash[:notice] = "Unregistered from Meetup!"
+    else
+      UsersAtMeetup.create(meetup_id: params[:meetup_id], user_id: params[:user_id])
+      flash[:notice] = "Meetup successfully joined!"
+    end
+  else
+    flash[:notice] = "You must sign in to join!"
+  end
+  redirect "/meetups/#{params[:meetup_id]}"
+end
+
+post "/add_comment" do
+  authenticate!
+  Comment.create(user_id: current_user.id, meetup_id: params[:meetup_id], body: params[:body])
+  redirect "/meetups/#{params[:meetup_id]}"
+end
+
+

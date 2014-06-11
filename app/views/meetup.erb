@@ -1,0 +1,63 @@
+<h1 id= "name"><%= @meetup.name%></h1>
+
+<div class = "section"><span class = "section_title">Where:&nbsp;</span>
+  <span class = "section_content"><%= @meetup.location%></span>
+</div>
+
+<div class = "section"><span class = "section_title">About:&nbsp;</span>
+  <span class = "section_content"><%= @meetup.description%></span>
+</div>
+
+<div class = "section"><span class = "section_title">Attending:&nbsp;</span>
+  <span class = "section_content">
+  <% if signed_in? %>
+    <ul class = "attending">
+    <li><form method = "post" action = "/registration" style="color:red;" name="Register">
+          <input type = "hidden" name = "meetup_id" value = "<%= @meetup.id%>" />
+          <input type = "hidden" name = "user_id" value = "<%= current_user.id if signed_in?%>" />
+          <input type="submit" value = "<%= @registered ? "Leave" : "Join"%>" class = "submit"/>
+        </form>
+    </li>
+
+    <% @attending.each do |user| %>
+    <li>
+      <div>
+      <img src = "<%= user.avatar_url %>" style="height:40px;" id= "attending_img"/>
+      <span id = "attending_username"><%= user.username %></span>
+      </div>
+    </li>
+    <% end %>
+    </ul>
+
+  <% else %>
+    Sign in to see who's going!
+
+  <% end %>
+
+  </span>
+</div>
+
+<div class = "section"><span class = "section_title">Comments:&nbsp;</span>
+  <span class = "section_content">
+  <% if signed_in? %>
+    <ul class = "comment">
+    <% @comments.each do |comment| %>
+    <li class = "comment"><%= "[#{comment.user.username}] #{comment.body}" %></li>
+    <% end %>
+    <li class = "comment">
+      <form method = "post" action = "/add_comment" name="Comment" id = "add_comment">
+         <input type = "hidden" name = "meetup_id" value = "<%= @meetup.id%>" />
+         <textarea name = "body" id="body" rows = "3" cols = "72" placeholder = "Add your comment here!" class = "form_input"></textarea><br>
+         <input type = "submit" value = "Post" class = "submit"/>
+      </form>
+    </li>
+    </ul>
+  <% else %>
+     Sign in to join the conversation!
+  <% end %>
+
+  </span>
+</div>
+
+
+

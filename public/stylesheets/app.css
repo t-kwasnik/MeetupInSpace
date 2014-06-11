@@ -4,10 +4,41 @@ body {
   color: #FFFFFF;
 }
 
+h4 {
+  display: inline-block;
+}
+
 a,
 a:visited {
   color: #FFFFFF;
   text-decoration: none;
+}
+
+
+ul {
+  list-style: none;
+}
+
+#home {
+  padding: 1em;
+  float: left;
+  display: inline-block;
+  width: 30%;
+  font-size: 18pt;
+  font-family: Lucida Console;
+}
+
+#meetup_content {
+  margin: 20px 30px;
+  font-size: 10pt;
+}
+
+#top {
+  margin: 0em 2em;
+}
+
+#home > a {
+  display: inline-block;
 }
 
 .container {
@@ -16,12 +47,23 @@ a:visited {
 }
 
 .top-bar {
+  display: inline-block;
   background-color: #3C3C3C;
+  width:100%;
 }
 
 .top-bar-section {
+  padding: 1.5em 0 ;
   display: inline-block;
   float: right;
+  vertical-align: middle;
+}
+
+.nav_items {
+  font-family: Lucida Console;
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
 }
 
 .top-bar-section li {
@@ -29,10 +71,167 @@ a:visited {
   margin-left: 1em;
 }
 
-.logo {
-  display: inline-block;
-  margin: 1em 0;
+#add_comment {
+  float: left;
+  margin: 10px 0;
 }
+
+.section_content {
+  color:white;
+  font-family: Lucida Grande;
+  text-shadow: none;
+  font-weight: normal;
+  font-size: 10pt;
+  display: inline-block;
+
+}
+
+
+.attending {
+  display: inline-block;
+}
+
+.attending > li {
+  display: inline-block;
+  margin: 10px 10px;
+}
+
+.comment {
+  display: block;
+}
+
+.section_content ul {
+  margin: 0px;
+  float: left;
+}
+
+.section_content > li {
+  display: inline-block;
+  margin: 10px;
+  float: left;
+}
+
+.section_title {
+  float: left;
+}
+
+#name {
+  text-shadow: black 0.1em 0.1em 0.2em;
+  color:white;
+  font-family: Lucida Grande;
+  font-weight: bold;
+}
+
+#current_user {
+  float:right;
+  margin: 5px 10px;
+  font-family: Lucida Console;
+  font-size: 10pt;
+  width: 10%;
+}
+
+.section {
+  text-shadow: black 0.1em 0.1em 0.2em;
+  color:#5df2e6;
+  font-family: Lucida Console;
+  font-weight: bold;
+  margin: 10px 0px;
+  padding:10px;
+  width:80%;
+  height:20%;
+  background:rgba(0,0,0,.2);
+  border-radius: 3px;
+
+}
+
+
+#attending_img {
+  display: block;
+  border-radius: 15px;
+}
+
+#attending_username {
+  color: white;
+  font-family: Lucida Grande;
+  font-size: 9pt;
+}
+
+
+#create_form {
+  color:rgb(50,50,50);
+}
+
+.create_form_label {
+  color:#5df2e6;
+  font-family: Lucida Grande;
+  font-weight: bold;
+  display: inline-block;
+  width: 100px;
+}
+
+.form_input {
+  color:rgb(50,50,50);
+  padding: 5px;
+  margin: 10px;
+}
+
+.submit {
+  margin: 5px 0;
+  color:rgb(50,255,255);
+  font-family: Lucida Grande;
+  font-weight: bold;
+  background: rgb(50,50,50);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.submit:hover {
+  background: rgb(60,60,60)
+}
+
+#create_meetup {
+  color:red;
+  padding:10px;
+  width:170px;
+  border-radius: 3px;
+}
+
+#meetup {
+  padding:10px;
+  width:80%;
+  height:20px;
+  background:rgba(0,0,0,.2);
+  border-radius: 3px;
+  max-width: 800px;
+}
+
+
+#meetup_name {
+  width:80%;
+  font-family: Lucida Grande;
+  font-size: 14pt;
+  color:#5df2e6;
+  display: inline-block;
+}
+
+#meetup_location {
+  float: right;
+  margin: 0 20px;
+  font-family: Lucida Grande;
+  font-size: 10pt;
+  color:rgb(200,200,200);
+}
+
+a:hover {
+  text-shadow: black 0.1em 0.1em 0.6em;
+  color:#5df2e6;
+
+}
+
+#meetup:hover {
+  box-shadow: 0px 0px 10px #888888;
+}
+
 
 .flash {
   padding: 1em;

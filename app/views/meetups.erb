@@ -1,0 +1,12 @@
+<ul>
+
+<% @all_meetups.each do |meetup|%>
+  <li>
+    <div id = "meetup">
+      <a href ="/meetups/<%= meetup["id"]%>">
+        <div id = "meetup_name"><%= meetup["name"] %></div>
+      </a>
+      <span id = "meetup_location"><%= "#{meetup["location"]}"%></span>
+    </div><br>
+  </li>
+<% end %>
